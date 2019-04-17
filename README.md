@@ -1,11 +1,53 @@
-# STATIC
-> 静态文件目录 static 用于存放应用的静态文件，此类文件不会被 Nuxt.js 调用 Webpack 进行构建编译处理。 服务器启动的时候，该目录下的文件会映射至应用的根路径 / 下
-**This directory is not required, you can delete it if you don't want to use it.**
+# nuxt-app
 
-This directory contains your static files.
-Each file inside this directory is mapped to `/`.
-Thus you'd want to delete this README.md before deploying to production.
+> My super Nuxt.js project
 
-Example: `/static/robots.txt` is mapped as `/robots.txt`.
+## Build Setup
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/guide/assets#static).
+``` bash
+# install dependencies
+$ npm install
+
+# serve with hot reload at localhost:3000
+$ npm run dev
+
+# build for production and launch server
+$ npm run build
+$ npm start
+
+# generate static project
+$ npm run generate
+```
+
+For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
+
+## 目录
+
+### nuxt.config.js
+1. 全局引入css/less/sass
+```javascript
+  css: [{
+    src: '@/assets/css/reset.less',
+    lang: 'less'
+  }],
+```
+2. proxy
+3. 引入第三方ui库
+### package.json
+1. 根据编译命令生成不同的文件
+```javascript
+script: {
+  "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
+    "build": "nuxt build",
+    "start": "cross-env NODE_ENV=production node server/index.js",
+    "generate": "nuxt generate",
+    "build:gh-pages": "cross-env DEPLOY_ENV=GH_PAGES nuxt build",
+    "generate:gh-pages": "cross-env DEPLOY_ENV=GH_PAGES nuxt generate"
+}
+
+const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
+  router: {
+    base: './'
+  }
+} : {}
+```

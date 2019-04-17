@@ -1,0 +1,30 @@
+// 定义less方法
+// 超出省略
+.ellipsis(@witdh) {
+  max-width: @witdh;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.activity-tag(@color) {
+  position: absolute;
+  left: 0;
+  top: 12/200rem;
+  width: 200/200rem;
+  height: 34/200rem;
+  line-height: 36/200rem;
+  margin-left: -70/200rem;
+  font-size: 22/200rem;
+  text-align: center;
+  overflow: hidden;
+  color: #fff;
+  background-color: @color;
+  transform: rotate(-45deg);
+}
+
+.placeholder(@color) {
+  &::-webkit-input-placeholder {
+    color: @color;
+  }
+}
